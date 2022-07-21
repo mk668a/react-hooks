@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { UseState } from "./pages/useState";
 import { NotFound } from "./pages/404";
+import { UseEffect } from "./pages/useEffect";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -16,6 +17,7 @@ root.render(
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/useState" element={<UseState />} />
+        <Route path="/useEffect" element={<UseEffect />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
