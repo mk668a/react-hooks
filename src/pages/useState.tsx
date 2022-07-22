@@ -6,7 +6,7 @@ export const UseState: FunctionComponent = () => {
   const [state, setState] = useState("value");
 
   return (
-    <Layout title={hooks.useState}>
+    <Layout title={hooks.useState} code={code}>
       <>
         <h2>{state}</h2>
         <input value={state} onChange={(e) => setState(e.target.value)} />
@@ -14,3 +14,14 @@ export const UseState: FunctionComponent = () => {
     </Layout>
   );
 };
+
+const code = `export const UseState: FunctionComponent = () => {
+  const [state, setState] = useState("value");
+
+  return (
+    <>
+      <h2>{state}</h2>
+      <input value={state} onChange={(e) => setState(e.target.value)} />
+    </>
+  );
+};`;

@@ -12,7 +12,7 @@ export const UseEffect: FunctionComponent = () => {
   }, [age]);
 
   return (
-    <Layout title={hooks.useEffect}>
+    <Layout title={hooks.useEffect} code={code}>
       <>
         <h2>{title}</h2>
         <h4>age: {age}</h4>
@@ -21,3 +21,21 @@ export const UseEffect: FunctionComponent = () => {
     </Layout>
   );
 };
+
+const code = `export const UseEffect: FunctionComponent = () => {
+  const [title, setTitle] = useState("You are 0 years old");
+  const [age, setAge] = useState(0);
+  const handleClick = () => setAge(age + 1);
+
+  useEffect(() => {
+    return setTitle(\`You are \${age} years old\`);
+  }, [age]);
+
+  return (
+    <>
+      <h2>{title}</h2>
+      <h4>age: {age}</h4>
+      <button onClick={handleClick}>age + 1</button>
+    </>
+  );
+};`;
