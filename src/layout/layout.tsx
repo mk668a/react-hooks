@@ -38,6 +38,15 @@ export const Layout: FunctionComponent<Props> = ({ title, children }) => {
       <div className="layout">
         <h1 className="layout-title">{title}</h1>
         <div className="layout-children">{children}</div>
+        <footer className="footer">
+          <a
+            href="https://github.com/mk668a/react-hooks"
+            target="_blank"
+            rel="noreferrer"
+          >
+            https://github.com/mk668a/react-hooks
+          </a>
+        </footer>
       </div>
     </>
   );

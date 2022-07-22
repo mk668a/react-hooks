@@ -1,5 +1,9 @@
 .layout {
-  padding: 32px 16px;
+  display: flex;
+  flex-direction: column;
+  padding: 32px 16px 0 16px;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
 .layout-title {
@@ -147,4 +151,8 @@
   [type="checkbox"]:checked {
     display: none;
   }
+}
+
+.footer {
+  margin-top: auto !important;
 }

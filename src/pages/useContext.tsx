@@ -1,54 +1,66 @@
-import React, { FunctionComponent } from "react";
+import React, {
+  createContext,
+  Dispatch,
+  FunctionComponent,
+  ReactElement,
+  SetStateAction,
+  useContext,
+  useState,
+} from "react";
 import { hooks } from "../constants";
 import { Layout } from "../layout/layout";
 
 type UserContext = {
-  username: string;
-  setUsername: (value: string) => void;
+  userName: string;
+  setUserName: Dispatch<SetStateAction<string>>;
 };
-const MyContext = React.createContext<UserContext>({
-  username: "",
-  setUsername: (value) => {},
+const MyContext = createContext<UserContext>({
+  userName: "initial context username",
+  setUserName: () => {},
 });
 
-export const MyContextProvider = (props: {
-  children:
-    | string
-    | number
-    | boolean
-    | React.ReactElement<any, string | React.JSXElementConstructor<any>>
-    | React.ReactFragment
-    | React.ReactPortal
-    | null
-    | undefined;
-}) => {
-  const [username, setUsername] = React.useState("John Doe");
+const MyContextProvider = ({ children }: { children: ReactElement }) => {
+  const [userName, setUserName] = useState<string>("provider username");
 
   return (
-    <MyContext.Provider value={{ username, setUsername }}>
-      {props.children}
+    <MyContext.Provider value={{ userName, setUserName }}>
+      {children}
     </MyContext.Provider>
   );
 };
 
+const MyContextEditor = () => {
+  const { userName, setUserName } = useContext(MyContext);
+
+  const [inputValue, setInputValue] = useState("new username");
+
+  return (
+    <>
+      <h3>userName(inside the provider): {userName}</h3>
+      <input
+        onChange={(e) => setInputValue(e.target.value)}
+        value={inputValue}
+      />
+      <button
+        onClick={() => {
+          setUserName(inputValue);
+        }}
+      >
+        set input value to myContext
+      </button>
+    </>
+  );
+};
+
 export const UseContext: FunctionComponent = () => {
-  const myContext = React.useContext(MyContext);
-  const { username, setUsername } = React.useContext(MyContext);
-
-  const [newUsername, setNewUsername] = React.useState("");
-
-  const handleChange = (e: {
-    target: { value: React.SetStateAction<string> };
-  }) => {
-    setNewUsername(e.target.value);
-  };
-
+  const myContext = useContext(MyContext);
   return (
     <Layout title={hooks.useContext}>
       <>
-        <h3>{myContext.username}</h3>
-        <input placeholder={username} onChange={handleChange} />
-        <button onClick={() => setUsername(newUsername)}>Save</button>
+        <p>userName(outside the provider): {myContext.userName}</p>
+        <MyContextProvider>
+          <MyContextEditor />
+        </MyContextProvider>
       </>
     </Layout>
   );
