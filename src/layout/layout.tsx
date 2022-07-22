@@ -18,7 +18,7 @@ const Menu: FunctionComponent = () => {
       <label id="burger" htmlFor="menu-toggle"></label>
       <ul id="menu">
         <li id="menu-item">
-          <Link to="npm i --save-dev @types/prismjs/">HOME</Link>
+          <Link to="/">HOME</Link>
         </li>
         {routes
           .filter((route) => `/${route}` !== window.location.pathname)
