@@ -1,6 +1,6 @@
 import React, { FunctionComponent, ReactElement } from "react";
 import { Link } from "react-router-dom";
-import { hooks } from "../constants";
+import { routes } from "../constants";
 import "./layout.scss";
 
 const Menu: FunctionComponent = () => {
@@ -13,12 +13,12 @@ const Menu: FunctionComponent = () => {
         <li id="menu-item">
           <Link to="/">HOME</Link>
         </li>
-        {hooks
-          .filter((hook) => `/${hook}` !== window.location.pathname)
-          .map((hook) => (
-            <li key={hook}>
-              <div className="menu-item" key={hook}>
-                <Link to={`/${hook}`}>{hook} </Link>
+        {routes
+          .filter((route) => `/${route}` !== window.location.pathname)
+          .map((route) => (
+            <li key={route}>
+              <div className="menu-item" key={route}>
+                <Link to={`/${route}`}>{route} </Link>
               </div>
             </li>
           ))}

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./home.scss";
-import { hooks } from "../constants";
+import { routes } from "../constants";
 
 function Home() {
   return (
@@ -11,9 +11,9 @@ function Home() {
           <h1>React Hooks</h1>
         </header>
         <nav className="nav">
-          {hooks.map((hook) => (
-            <div className="nav-item" key={hook}>
-              <Link to={hook}>{hook} </Link>
+          {routes.map((route) => (
+            <div className="nav-item" key={route}>
+              <Link to={route}>{route}</Link>
             </div>
           ))}
         </nav>

@@ -7,6 +7,23 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { UseState } from "./pages/useState";
 import { NotFound } from "./pages/404";
 import { UseEffect } from "./pages/useEffect";
+import { hooks } from "./constants";
+
+const routes = [
+  { path: hooks.useState, component: <UseState /> },
+  { path: hooks.useEffect, component: <UseEffect /> },
+  // { path: hooks.useContext, component: <UseContext /> },
+  // { path: hooks.useReducer, component: <UseReducer /> },
+  // { path: hooks.useCallback, component: <UseCallback /> },
+  // { path: hooks.useMemo, component: <UseMemo /> },
+  // { path: hooks.useRef, component: <UseRef /> },
+  // { path: hooks.useImperativeHandle, component: <UseImperativeHandle /> },
+  // { path: hooks.useLayoutEffect, component: <UseLayoutEffect /> },
+  // { path: hooks.useDebugValue, component: <UseDebugValue /> },
+  // { path: hooks.useDeferredValue, component: <UseDeferredValue /> },
+  // { path: hooks.useTransition, component: <UseTransition /> },
+  // { path: hooks.useId, component: <UseId /> },
+];
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -16,8 +33,9 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/useState" element={<UseState />} />
-        <Route path="/useEffect" element={<UseEffect />} />
+        {routes.map((route, key) => (
+          <Route path={`/${route.path}`} element={route.component} key={key} />
+        ))}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
