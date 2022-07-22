@@ -1,28 +1,39 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./styles/reset.scss";
-import Home from "./pages/home";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { hooks } from "./constants";
+import Home from "./pages/home";
 import { UseState } from "./pages/useState";
 import { NotFound } from "./pages/404";
 import { UseEffect } from "./pages/useEffect";
-import { hooks } from "./constants";
+import { UseContext } from "./pages/useContext";
+import { UseReducer } from "./pages/useReducer";
+import { UseCallback } from "./pages/useCallback";
+import { UseMemo } from "./pages/useMemo";
+import { UseRef } from "./pages/useRef";
+import { UseImperativeHandle } from "./pages/useImperativeHandle";
+import { UseLayoutEffect } from "./pages/useLayoutEffect";
+import { UseDebugValue } from "./pages/useDebugValue";
+import { UseDeferredValue } from "./pages/useDeferredValue";
+import { UseTransition } from "./pages/useTransition";
+import { UseId } from "./pages/useId";
 
 const routes = [
   { path: hooks.useState, component: <UseState /> },
   { path: hooks.useEffect, component: <UseEffect /> },
-  // { path: hooks.useContext, component: <UseContext /> },
-  // { path: hooks.useReducer, component: <UseReducer /> },
-  // { path: hooks.useCallback, component: <UseCallback /> },
-  // { path: hooks.useMemo, component: <UseMemo /> },
-  // { path: hooks.useRef, component: <UseRef /> },
-  // { path: hooks.useImperativeHandle, component: <UseImperativeHandle /> },
-  // { path: hooks.useLayoutEffect, component: <UseLayoutEffect /> },
-  // { path: hooks.useDebugValue, component: <UseDebugValue /> },
-  // { path: hooks.useDeferredValue, component: <UseDeferredValue /> },
-  // { path: hooks.useTransition, component: <UseTransition /> },
-  // { path: hooks.useId, component: <UseId /> },
+  { path: hooks.useContext, component: <UseContext /> },
+  { path: hooks.useReducer, component: <UseReducer /> },
+  { path: hooks.useCallback, component: <UseCallback /> },
+  { path: hooks.useMemo, component: <UseMemo /> },
+  { path: hooks.useRef, component: <UseRef /> },
+  { path: hooks.useImperativeHandle, component: <UseImperativeHandle /> },
+  { path: hooks.useLayoutEffect, component: <UseLayoutEffect /> },
+  { path: hooks.useDebugValue, component: <UseDebugValue /> },
+  { path: hooks.useDeferredValue, component: <UseDeferredValue /> },
+  { path: hooks.useTransition, component: <UseTransition /> },
+  { path: hooks.useId, component: <UseId /> },
 ];
 
 const root = ReactDOM.createRoot(

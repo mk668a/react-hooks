@@ -1,4 +1,5 @@
 import React, { useEffect, FunctionComponent, useState } from "react";
+import { hooks } from "../constants";
 import { Layout } from "../layout/layout";
 
 export const UseEffect: FunctionComponent = () => {
@@ -11,7 +12,7 @@ export const UseEffect: FunctionComponent = () => {
   }, [age]);
 
   return (
-    <Layout title="useState">
+    <Layout title={hooks.useEffect}>
       <>
         <h2>{title}</h2>
         <h4>age: {age}</h4>
