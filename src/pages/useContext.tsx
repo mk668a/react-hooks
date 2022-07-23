@@ -67,17 +67,13 @@ export const UseContext: FunctionComponent = () => {
 };
 
 const code = `
-type UserContext = {
-  userName: string;
-  setUserName: Dispatch<SetStateAction<string>>;
-};
-const MyContext = createContext<UserContext>({
+const MyContext = createContext({
   userName: "initial context username",
   setUserName: () => {},
 });
 
-const MyContextProvider = ({ children }: { children: ReactElement }) => {
-  const [userName, setUserName] = useState<string>("provider username");
+const MyContextProvider = ({ children }) => {
+  const [userName, setUserName] = useState("provider username");
 
   return (
     <MyContext.Provider value={{ userName, setUserName }}>
@@ -109,8 +105,9 @@ const MyContextEditor = () => {
   );
 };
 
-const UseContext: FunctionComponent = () => {
+const UseContext = () => {
   const myContext = useContext(MyContext);
+  
   return (
     <>
       <p>userName(outside the provider): {myContext.userName}</p>

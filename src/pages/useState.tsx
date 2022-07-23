@@ -16,8 +16,8 @@ export const UseState: FunctionComponent = () => {
 };
 
 const code = `
-const UseState: FunctionComponent = () => {
-  const [state, setState] = useState<string>("value");
+const UseState = () => {
+  const [state, setState] = useState("value");
 
   return (
     <>

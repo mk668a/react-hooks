@@ -77,22 +77,12 @@ export const UseReducer: FunctionComponent = () => {
 };
 
 const code = `
-type State = {
-  name: string;
-  lastname: string;
-};
-
-type Action = {
-  type: string;
-  payload: any;
-};
-
 const actionIds = {
   setName: "setname",
   setLastname: "setlastname",
 };
 
-const userInfoReducer = (state: State, action: Action): State => {
+const userInfoReducer = (state, action) => {
   switch (action.type) {
     case actionIds.setName:
       return {
@@ -109,13 +99,8 @@ const userInfoReducer = (state: State, action: Action): State => {
   }
 };
 
-const EditUsername: FunctionComponent<{
-  name: string;
-  dispatch: Dispatch<Action>;
-}> = memo(({ name, dispatch }) => {
-  const li = document.createElement("li");
-  li.innerText = "rerendered memo";
-  document.getElementById("memo")?.appendChild(li);
+const EditUsername = memo(({ name, dispatch }) => {
+  console.log("rerendered memo")
 
   return (
     <input
@@ -127,7 +112,7 @@ const EditUsername: FunctionComponent<{
   );
 });
 
-const UseReducer: FunctionComponent = () => {
+const UseReducer = () => {
   const [userInfo, dispatch] = useReducer(userInfoReducer, {
     name: "name",
     lastname: "lastname",
