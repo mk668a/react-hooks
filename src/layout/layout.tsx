@@ -42,8 +42,12 @@ export const Layout: FunctionComponent<Props> = ({
   code,
   scope,
 }) => {
-  const [flex, setFlex] = useState<boolean>(false);
-  const [codevisible, setCodevisible] = useState<boolean>(true);
+  const [flex, setFlex] = useState<boolean>(
+    Boolean(window.localStorage.getItem("flex"))
+  );
+  const [codevisible, setCodevisible] = useState<boolean>(
+    Boolean(window.localStorage.getItem("codevisible"))
+  );
 
   return (
     <>
@@ -59,7 +63,13 @@ export const Layout: FunctionComponent<Props> = ({
               name="code"
               type="checkbox"
               checked={codevisible}
-              onChange={() => setCodevisible(!codevisible)}
+              onChange={() => {
+                window.localStorage.setItem(
+                  "codevisible",
+                  String(!codevisible)
+                );
+                setCodevisible(!codevisible);
+              }}
             ></input>
           </div>
           {codevisible && (
@@ -70,7 +80,10 @@ export const Layout: FunctionComponent<Props> = ({
                 name="flex"
                 type="checkbox"
                 checked={flex}
-                onChange={() => setFlex(!flex)}
+                onChange={() => {
+                  window.localStorage.setItem("flex", String(!flex));
+                  setFlex(!flex);
+                }}
               ></input>
             </div>
           )}

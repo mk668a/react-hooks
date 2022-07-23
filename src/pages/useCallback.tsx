@@ -1,48 +1,93 @@
-import React, { FunctionComponent, useCallback, useState } from "react";
+import React, { FunctionComponent, memo, useCallback, useState } from "react";
 import { hooks } from "../constants";
 import { Layout } from "../layout/layout";
 
-const Age = ({
-  age,
-  handleClick,
-}: {
-  age: number;
-  handleClick: () => void;
-}) => {
-  return (
-    <div>
-      <div style={{ border: "2px", background: "papayawhip", padding: "1rem" }}>
-        Today I am {age} Years of Age
-      </div>
-      <pre> - click the button below 👇 </pre>
-      <button onClick={handleClick}>Get older! </button>
-    </div>
-  );
+const CallBackChild = ({ callBack }: { callBack: any }) => {
+  console.log("render component with callBack");
+  return <></>;
 };
 
-const Instructions = React.memo((props: { doSomething: any }) => {
-  return (
-    <div style={{ background: "black", color: "yellow", padding: "1rem" }}>
-      <p>Follow the instructions above as closely as possible</p>
-    </div>
-  );
+const MemoChild = memo(({ func }: { func: any }) => {
+  console.log("render component with memo");
+  return <></>;
+});
+
+const CallBackMemoChild = memo(({ callBack }: { callBack: any }) => {
+  console.log("render component with memo & callBack");
+  return <></>;
 });
 
 export const UseCallback: FunctionComponent = () => {
-  const [age, setAge] = useState<number>(99);
-  const handleClick = () => setAge(age + 1);
-  const someValue = "someValue";
+  console.log("-----render parent-----");
+
+  const [state, setState] = useState<number>(100);
+  const [state2, setState2] = useState<number>(100);
+
+  const func = () => {
+    return state2;
+  };
+
+  const callBackFunc = useCallback(() => {
+    return state2;
+  }, [state2]);
 
   return (
-    <Layout title={hooks.useCallback}>
+    <Layout title={hooks.useCallback} code={code}>
       <>
-        <Age age={age} handleClick={handleClick} />
-        <Instructions
-          doSomething={useCallback(() => {
-            return someValue;
-          }, [someValue])}
-        />
+        <h3>state: {state}</h3>
+        <button onClick={() => setState(state + 1)}>state +1</button>
+
+        <MemoChild func={func} />
+        <CallBackChild callBack={callBackFunc} />
+        <CallBackMemoChild callBack={callBackFunc} />
       </>
     </Layout>
   );
 };
+
+const code = `
+const CallBackChild = ({ callBack }) => {
+  console.log("render component with callBack");
+  return <></>;
+};
+
+const MemoChild = memo(({ func }) => {
+  console.log("render component with memo");
+  return <></>;
+});
+
+const CallBackMemoChild = memo(({ callBack }) => {
+  console.log("render component with memo & callBack");
+  return <></>;
+});
+
+const UseCallback = () => {
+  console.log("-----render parent-----");
+
+  const [state, setState] = useState(100);
+  const [state2, setState2] = useState(100);
+
+  const func = () => {
+    return state2;
+  };
+
+  const callBackFunc = useCallback(() => {
+    return state2;
+  }, [state2]);
+
+  return (
+    <>
+      <h3>state: {state}</h3>
+      <button onClick={() => setState(state + 1)}>state +1</button>
+
+      <MemoChild func={func} />
+      <CallBackChild callBack={callBackFunc} />
+      <CallBackMemoChild callBack={callBackFunc} />
+    </>
+  );
+};
+
+render(
+  <UseCallback />
+)
+`.trim();
