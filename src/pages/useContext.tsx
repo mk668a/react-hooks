@@ -66,7 +66,8 @@ export const UseContext: FunctionComponent = () => {
   );
 };
 
-const code = `type UserContext = {
+const code = `
+type UserContext = {
   userName: string;
   setUserName: Dispatch<SetStateAction<string>>;
 };
@@ -108,7 +109,7 @@ const MyContextEditor = () => {
   );
 };
 
-export const UseContext: FunctionComponent = () => {
+const UseContext: FunctionComponent = () => {
   const myContext = useContext(MyContext);
   return (
     <>
@@ -118,4 +119,9 @@ export const UseContext: FunctionComponent = () => {
       </MyContextProvider>
     </>
   );
-};`;
+};
+
+render(
+  <UseContext />
+)
+`.trim();

@@ -22,7 +22,8 @@ export const UseEffect: FunctionComponent = () => {
   );
 };
 
-const code = `export const UseEffect: FunctionComponent = () => {
+const code = `
+const UseEffect: FunctionComponent = () => {
   const [title, setTitle] = useState("You are 0 years old");
   const [age, setAge] = useState(0);
   const handleClick = () => setAge(age + 1);
@@ -38,4 +39,9 @@ const code = `export const UseEffect: FunctionComponent = () => {
       <button onClick={handleClick}>age + 1</button>
     </>
   );
-};`;
+};
+
+render(
+  <UseEffect />
+)
+`.trim();

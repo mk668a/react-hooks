@@ -127,7 +127,7 @@ const EditUsername: FunctionComponent<{
   );
 });
 
-export const UseReducer: FunctionComponent = () => {
+const UseReducer: FunctionComponent = () => {
   const [userInfo, dispatch] = useReducer(userInfoReducer, {
     name: "name",
     lastname: "lastname",
@@ -148,4 +148,8 @@ export const UseReducer: FunctionComponent = () => {
     </>
   );
 };
-`;
+
+render(
+  <UseReducer />
+)
+`.trim();;

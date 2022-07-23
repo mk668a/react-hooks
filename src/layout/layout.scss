@@ -38,6 +38,7 @@
     width: 16px;
     height: 16px;
     margin-left: 4px;
+    cursor: pointer;
   }
 
   > label {
@@ -57,7 +58,7 @@
   .layout-code {
     width: 100%;
     max-height: 75vh;
-    overflow: scroll;
+    overflow: scroll !important;
   }
 
   .layout-code {
@@ -69,46 +70,34 @@
 .layout-children,
 .layout-code {
   max-height: 55vh;
-  overflow: scroll;
+  overflow: scroll !important;
 }
 
 .layout-children {
   padding: 32px 32px 48px 32px;
   background: rgb(243, 243, 243);
   border-radius: 10px;
+
+  &.debug {
+    border: 1px solid red;
+  }
 }
 
 .layout-code {
   position: relative;
-  display: block;
-  background: hsla(0, 0%, 100%, 0.5);
+  background: #1e1e1e;
   margin-top: 16px;
   border-radius: 10px;
-  padding: 10px;
-  line-height: 1.5;
+  padding: 16px;
 
   textarea {
-    border: none;
-    outline: none;
-  }
-}
+    border: none !important;
+    outline: none !important;
+    caret-color: white !important;
 
-.layout-code-editbutton {
-  position: absolute;
-  right: 8px;
-  top: 8px;
-  font-weight: bold;
-  font-size: 12px;
-  cursor: pointer;
-  text-decoration: none;
-  color: rgb(96 96 96);
-  background: rgba(192, 192, 192, 0.5);
-  border-radius: 10px;
-  padding: 4px 8px;
-  z-index: 500;
-
-  &:visited {
-    color: rgb(96 96 96);
+    &:focus {
+      border: 1px solid rgb(90, 90, 90) !important;
+    }
   }
 }
 

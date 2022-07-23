@@ -3,10 +3,10 @@ import { hooks } from "../constants";
 import { Layout } from "../layout/layout";
 
 export const UseState: FunctionComponent = () => {
-  const [state, setState] = useState("value");
+  const [state, setState] = useState<string>("value");
 
   return (
-    <Layout title={hooks.useState} code={code}>
+    <Layout title={hooks.useState} code={code} scope={scope}>
       <>
         <h2>{state}</h2>
         <input value={state} onChange={(e) => setState(e.target.value)} />
@@ -15,8 +15,9 @@ export const UseState: FunctionComponent = () => {
   );
 };
 
-const code = `export const UseState: FunctionComponent = () => {
-  const [state, setState] = useState("value");
+const code = `
+const UseState: FunctionComponent = () => {
+  const [state, setState] = useState<string>("value");
 
   return (
     <>
@@ -24,4 +25,11 @@ const code = `export const UseState: FunctionComponent = () => {
       <input value={state} onChange={(e) => setState(e.target.value)} />
     </>
   );
-};`;
+};
+
+render(
+  <UseState />
+)
+`.trim();
+
+const scope = {};
