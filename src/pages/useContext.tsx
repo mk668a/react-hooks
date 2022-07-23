@@ -10,40 +10,40 @@ import React, {
 import { hooks } from "../constants";
 import { Layout } from "../layout/layout";
 
-type UserContext = {
-  userName: string;
-  setUserName: Dispatch<SetStateAction<string>>;
+type Context = {
+  text: string;
+  setText: Dispatch<SetStateAction<string>>;
 };
-const MyContext = createContext<UserContext>({
-  userName: "initial context username",
-  setUserName: () => {},
+const MyContext = createContext<Context>({
+  text: "initial text",
+  setText: () => {},
 });
 
 const MyContextProvider = ({ children }: { children: ReactElement }) => {
-  const [userName, setUserName] = useState<string>("provider username");
+  const [text, setText] = useState<string>("provider text");
 
   return (
-    <MyContext.Provider value={{ userName, setUserName }}>
+    <MyContext.Provider value={{ text, setText }}>
       {children}
     </MyContext.Provider>
   );
 };
 
 const MyContextEditor = () => {
-  const { userName, setUserName } = useContext(MyContext);
+  const { text, setText } = useContext(MyContext);
 
-  const [inputValue, setInputValue] = useState("new username");
+  const [inputValue, setInputValue] = useState("new text");
 
   return (
     <>
-      <h3>userName(inside the provider): {userName}</h3>
+      <p>text: {text}</p>
       <input
         onChange={(e) => setInputValue(e.target.value)}
         value={inputValue}
       />
       <button
         onClick={() => {
-          setUserName(inputValue);
+          setText(inputValue);
         }}
       >
         set input value to myContext
@@ -53,13 +53,17 @@ const MyContextEditor = () => {
 };
 
 export const UseContext: FunctionComponent = () => {
-  const myContext = useContext(MyContext);
   return (
     <Layout title={hooks.useContext} code={code}>
       <>
-        <p>userName(outside the provider): {myContext.userName}</p>
+        <h3>outside the provider</h3>
+        <MyContextEditor />
+
         <MyContextProvider>
-          <MyContextEditor />
+          <>
+            <h3>inside the provider</h3>
+            <MyContextEditor />
+          </>
         </MyContextProvider>
       </>
     </Layout>
@@ -68,35 +72,35 @@ export const UseContext: FunctionComponent = () => {
 
 const code = `
 const MyContext = createContext({
-  userName: "initial context username",
-  setUserName: () => {},
+  text: "initial text",
+  setText: () => {},
 });
 
 const MyContextProvider = ({ children }) => {
-  const [userName, setUserName] = useState("provider username");
+  const [text, setText] = useState<string>("provider text");
 
   return (
-    <MyContext.Provider value={{ userName, setUserName }}>
+    <MyContext.Provider value={{ text, setText }}>
       {children}
     </MyContext.Provider>
   );
 };
 
 const MyContextEditor = () => {
-  const { userName, setUserName } = useContext(MyContext);
+  const { text, setText } = useContext(MyContext);
 
-  const [inputValue, setInputValue] = useState("new username");
+  const [inputValue, setInputValue] = useState("new text");
 
   return (
     <>
-      <h3>userName(inside the provider): {userName}</h3>
+      <p>text: {text}</p>
       <input
         onChange={(e) => setInputValue(e.target.value)}
         value={inputValue}
       />
       <button
         onClick={() => {
-          setUserName(inputValue);
+          setText(inputValue);
         }}
       >
         set input value to myContext
@@ -106,13 +110,16 @@ const MyContextEditor = () => {
 };
 
 const UseContext = () => {
-  const myContext = useContext(MyContext);
-  
   return (
     <>
-      <p>userName(outside the provider): {myContext.userName}</p>
+      <h3>outside the provider</h3>
+      <MyContextEditor />
+
       <MyContextProvider>
-        <MyContextEditor />
+        <>
+          <h3>inside the provider</h3>
+          <MyContextEditor />
+        </>
       </MyContextProvider>
     </>
   );
