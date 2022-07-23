@@ -1,6 +1,12 @@
 import React, { FunctionComponent, ReactElement, useState } from "react";
 import { Link } from "react-router-dom";
-import { defaultScope, isDevelop, reactLiveHome, routes } from "../constants";
+import {
+  defaultScope,
+  Hooks,
+  isDevelop,
+  reactLiveHome,
+  routes,
+} from "../constants";
 import "./layout.scss";
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from "react-live";
 
@@ -29,7 +35,7 @@ const Menu: FunctionComponent = () => {
 };
 
 type Props = {
-  title: string;
+  title: Hooks | "Not Found Page";
   children: ReactElement;
   code?: string;
   scope?: {
