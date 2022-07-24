@@ -9,6 +9,8 @@ import {
   useContext,
   memo,
   createContext,
+  forwardRef,
+  useImperativeHandle,
 } from "react";
 
 export const hooks = Object.freeze({
@@ -42,6 +44,8 @@ export const defaultScope = {
   useContext,
   memo,
   createContext,
+  forwardRef,
+  useImperativeHandle,
 };
 
 export const isDevelop = window.location.hostname === "localhost";
