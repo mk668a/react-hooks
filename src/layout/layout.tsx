@@ -16,20 +16,22 @@ const Menu: FunctionComponent = () => {
       <input type="checkbox" id="menu-toggle" />
       <label id="trigger" htmlFor="menu-toggle"></label>
       <label id="burger" htmlFor="menu-toggle"></label>
-      <ul id="menu">
-        <li id="menu-item">
-          <Link to="/">HOME</Link>
-        </li>
-        {routes
-          .filter((route) => `/${route}` !== window.location.pathname)
-          .map((route) => (
-            <li key={route}>
-              <div className="menu-item" key={route}>
-                <Link to={`/${route}`}>{route} </Link>
-              </div>
-            </li>
-          ))}
-      </ul>
+      <div id="menu">
+        <Link to="/" className="menu-item">
+          HOME
+        </Link>
+        {routes.map((route) => (
+          <Link
+            className={`menu-item ${
+              `/${route}` === window.location.pathname ? "_selected" : ""
+            }`}
+            to={`/${route}`}
+            key={route}
+          >
+            {route}
+          </Link>
+        ))}
+      </div>
     </div>
   );
 };

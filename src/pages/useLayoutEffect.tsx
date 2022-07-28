@@ -13,13 +13,13 @@ export const UseLayoutEffect: FunctionComponent = () => {
 
   useEffect(() => {
     if (number === 0) {
-      setNumber(Math.floor(Math.random() * 100));
+      setNumber(Math.floor(Math.random() * 100 + 1));
     }
   }, [number]);
 
   useLayoutEffect(() => {
     if (number2 === 0) {
-      setNumber2(Math.floor(Math.random() * 100));
+      setNumber2(Math.floor(Math.random() * 100 + 1));
     }
   }, [number2]);
 
@@ -48,13 +48,13 @@ const UseLayoutEffect = () => {
 
   useEffect(() => {
     if (number === 0) {
-      setNumber(Math.floor(Math.random() * 100));
+      setNumber(Math.floor(Math.random() * 100 + 1));
     }
   }, [number]);
 
   useLayoutEffect(() => {
     if (number2 === 0) {
-      setNumber2(Math.floor(Math.random() * 100));
+      setNumber2(Math.floor(Math.random() * 100 + 1));
     }
   }, [number2]);
 
