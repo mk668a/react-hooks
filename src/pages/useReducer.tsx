@@ -38,9 +38,7 @@ const EditUsername: FunctionComponent<{
   name: string;
   dispatch: Dispatch<Action>;
 }> = memo(({ name, dispatch }) => {
-  const li = document.createElement("li");
-  li.innerText = "rerendered memo";
-  document.getElementById("memo")?.appendChild(li);
+  console.log("rerendered memo");
 
   return (
     <input
@@ -70,7 +68,6 @@ export const UseReducer: FunctionComponent = () => {
             dispatch({ type: actionIds.setLastname, payload: e.target.value })
           }
         />
-        <ul id="memo"></ul>
       </>
     </Layout>
   );
@@ -100,7 +97,7 @@ const userInfoReducer = (state, action) => {
 };
 
 const EditUsername = memo(({ name, dispatch }) => {
-  console.log("rerendered memo")
+  console.log("rerendered memo");
 
   return (
     <input
@@ -112,7 +109,7 @@ const EditUsername = memo(({ name, dispatch }) => {
   );
 });
 
-const UseReducer = () => {
+const UseReducer: FunctionComponent = () => {
   const [userInfo, dispatch] = useReducer(userInfoReducer, {
     name: "name",
     lastname: "lastname",
@@ -129,12 +126,12 @@ const UseReducer = () => {
           dispatch({ type: actionIds.setLastname, payload: e.target.value })
         }
       />
-      <ul id="memo"></ul>
     </>
   );
 };
 
+
 render(
   <UseReducer />
 )
-`.trim();;
+`.trim();
