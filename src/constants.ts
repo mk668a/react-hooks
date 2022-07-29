@@ -12,6 +12,7 @@ import {
   forwardRef,
   useImperativeHandle,
   useDebugValue,
+  useDeferredValue,
 } from "react";
 
 export const hooks = Object.freeze({
@@ -48,6 +49,7 @@ export const defaultScope = {
   forwardRef,
   useImperativeHandle,
   useDebugValue,
+  useDeferredValue,
 };
 
 export const isDevelop = window.location.hostname === "localhost";
