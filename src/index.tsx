@@ -3,6 +3,8 @@ import ReactDOM from "react-dom/client";
 import "./styles/reset.scss";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { initializeApp } from "firebase/app";
+import { getAnalytics, logEvent } from "firebase/analytics";
 import { hooks } from "./constants";
 import Home from "./pages/home";
 import { UseState } from "./pages/useState";
@@ -19,6 +21,19 @@ import { UseDebugValue } from "./pages/useDebugValue";
 import { UseDeferredValue } from "./pages/useDeferredValue";
 import { UseTransition } from "./pages/useTransition";
 import { UseId } from "./pages/useId";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBLACTRWqPpTkt4-4oQgDespKpxLnRk77I",
+  authDomain: "react-hooks-sample-list.firebaseapp.com",
+  projectId: "react-hooks-sample-list",
+  storageBucket: "react-hooks-sample-list.appspot.com",
+  messagingSenderId: "493622769726",
+  appId: "1:493622769726:web:d6268ef19e2081fac6396f",
+  measurementId: "G-4115TDHW2K",
+};
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+logEvent(analytics, "notification_received");
 
 const routes = [
   { path: hooks.useState, component: <UseState /> },

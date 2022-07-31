@@ -1,4 +1,5 @@
 import React, { FunctionComponent, ReactElement, useState } from "react";
+import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import {
   defaultScope,
@@ -59,6 +60,9 @@ export const Layout: FunctionComponent<Props> = ({
 
   return (
     <>
+      <Helmet>
+        <title>React Hooks | {title}</title>
+      </Helmet>
       <Menu />
       <div className="layout">
         <h1 className="layout-title">{title}</h1>
